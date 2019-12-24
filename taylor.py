@@ -39,10 +39,14 @@ def on_closing():
     func = sympify(funcEntry.get().replace('e', '2.718281828459045'))
     master.destroy()
 
+	
+def enter_pressed(event):
+    on_closing()
+	
 
 tk.Button(master, text='OK', command=on_closing).grid(row=4, column=0)
 
-master.bind("<Return>", on_closing)
+master.bind("<Return>", enter_pressed)
 master.protocol("WM_DELETE_WINDOW", lambda: exit())
 master.title("Taylor Approximation")
 
