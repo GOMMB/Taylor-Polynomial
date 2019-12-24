@@ -60,18 +60,24 @@ def slider_thread(min, max):
         data.put(('b', base.get()))
 
     taylor_degree = tk.Tk()
+	
+    tk.Label(taylor_degree, text="Degree:").grid(row=0)
+	
     slider = tk.IntVar()
     slider.trace('w', changed)
     scale = tk.Scale(taylor_degree, from_=1, to=100, orient=tk.HORIZONTAL, length=300, variable=slider)
-    scale.pack(anchor=tk.CENTER)
+    scale.grid(row=1)
+	
+    tk.Label(taylor_degree, text="Base:").grid(row=2)
+	
     base = tk.DoubleVar()
     base.trace('w', changed_base)
     scale_base = tk.Scale(taylor_degree, from_=min, to=max, orient=tk.HORIZONTAL, length=300, resolution=0.5, variable=base)
+    scale_base.grid(row=3)
     base.set((min + max) / 2)
-    scale_base.pack(anchor=tk.CENTER)
 
     taylor_degree.protocol("WM_DELETE_WINDOW", lambda: exit())
-    taylor_degree.title("Taylor Polynomial Degree")
+    taylor_degree.title("Taylor Polynomial Degree and Base")
 
     taylor_degree.mainloop()
 
